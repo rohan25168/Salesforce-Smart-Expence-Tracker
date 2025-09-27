@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Expense List">
+        <template for:each={expenses} for:item="exp">
+            <div key={exp.Id} class="expense-row">
+                <p>
+                    {exp.Name} - {exp.Vendor__c} - {exp.Amount__c} - {exp.Date__c} - {exp.Status__c}
+                </p>
+                <template if:true={isManagerOrFinance}>
+                    <button data-id={exp.Id} onclick={handleApprove}>Approve</button>
+                    <button data-id={exp.Id} onclick={handleReject}>Reject</button>
+                </template>
+            </div>
+        </template>
+        <p>{message}</p>
+    </lightning-card>
+</template>
